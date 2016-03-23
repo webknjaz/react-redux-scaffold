@@ -16,15 +16,12 @@ export default class BookDetail extends Component {
   render() {
     const { bookId } = this.props.params;
 
-    const book = [...this.props.books.toJS()].filter(b => {
-      console.log(b.id, bookId);
-      console.log(b.id === bookId);
-      return b.id === bookId;
-    }).reduce((a, b) => b, {});
-    console.log(book);
+    const book = this.props.books.toJS()
+                    .filter(b => b.id === bookId)
+                    .reduce((a, b) => b, {});
+
     return (
       <section className="book-detail">
-        Single Book {bookId} Detail here:<br />
         <li>Name: {book.name}</li>
         <li>Genre: {book.genre_s}</li>
         <li>Pages: {book.pages_i}</li>
