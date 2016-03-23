@@ -19,12 +19,8 @@ class BookList extends Component {
       return <p>Loading...</p>;
     }
 
-    // const books = this.props.books.map(book =>
-    //     <p>{book}</p>
-    // );
-
-    const books = this.props.books.map(book =>
-        <p key={book}>{book.name} ({book.authors})</p>
+    const books = this.props.books.toJS().map(book =>
+        <li key={book.id}>{book.name} ({book.authors[0].name})</li>
     );
 
     return (
