@@ -6,7 +6,7 @@ import { loadBooksSuccess, loadBooksFailure, loadBooksRequest } from '../actions
 class BookList extends Component {
 
   componentDidMount() {
-    this.props.fetchData();
+    this.props.fetchPosts();
   }
 
   render() {
@@ -30,7 +30,7 @@ class BookList extends Component {
 
 
 const mapStateToProps = (state) => ({
-  books: state.todos // TODO: pass books here somehow
+  books: state.books // TODO: pass books here somehow
 });
 
 const mapDispatchToProps = (dispatch) => ({
