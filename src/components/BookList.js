@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
 
 import { loadBooksSuccess, loadBooksFailure, loadBooksRequest } from '../actions/TodosAction.js';
 
+
 class BookList extends Component {
+  static propTypes = {
+    books: PropTypes.instanceOf(List).isRequired
+  };
 
   componentDidMount() {
     this.props.fetchPosts();
@@ -14,8 +19,12 @@ class BookList extends Component {
       return <p>Loading...</p>;
     }
 
+    // const books = this.props.books.map(book =>
+    //     <p>{book}</p>
+    // );
+
     const books = this.props.books.map(book =>
-        <p>{book}</p>
+        <p key={book}>{book.name} ({book.authors})</p>
     );
 
     return (
@@ -38,14 +47,13 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(loadBooksRequest());
     fetch('/api/books')
         .then((response) => response.json())
-        .then((json) => {
-          console.log(json);
-          return json;
-        }).then(
+        .then(
           (books) => dispatch(loadBooksSuccess(books)),
           (error) => dispatch(loadBooksFailure(error))
         );
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookList);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  pure: false
+})(BookList);

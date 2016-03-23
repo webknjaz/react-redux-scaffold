@@ -1,23 +1,15 @@
 import { List, Map } from 'immutable';
 import * as ActionTypes from '../constants/ActionTypes.js';
 
-const initialState = List();
+const initialBookState = List();
 
-export function books(state = initialState, action = null) {
+export function books(state = initialBookState, action = null) {
   const { type, payload } = action;
   switch (type) {
     case ActionTypes.LOAD_BOOKS_REQUEST:
       return state;
     case ActionTypes.LOAD_BOOKS_SUCCESS:
-      console.log(state);
-      payload.every((book) => {
-        console.log(book);
-        state.push(Map(book));
-        return true;
-      });
-      console.log(type, payload);
-      console.log(state);
-      return state;
+      return List(payload.map((book) => Map(book)));
     case ActionTypes.LOAD_BOOKS_FAILURE:
       return state;
     default:
