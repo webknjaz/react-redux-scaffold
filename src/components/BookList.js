@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { List } from 'immutable';
 
@@ -20,7 +21,7 @@ class BookList extends Component {
     }
 
     const books = this.props.books.toJS().map(book =>
-        <li key={book.id}>{book.name} ({book.authors[0].name})</li>
+        <li key={book.id}><Link to={{ pathname: `/books/${book.id}` }}>{book.name} ({book.authors[0].name})</Link></li>
     );
 
     return (
