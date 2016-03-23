@@ -36,7 +36,7 @@ class BookList extends Component {
 
 
 const mapStateToProps = (state) => ({
-  books: state.books // TODO: pass books here somehow
+  books: state.books
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -51,6 +51,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: false
-})(BookList);
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);

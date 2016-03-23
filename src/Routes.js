@@ -20,7 +20,7 @@ export default class Routes extends Component {
         <Route path="/" component={IndexPage}>
             <Route path="todo" component={TodoApp} />
             <Route path="books" component={BooksList} />
-            <Route path="books/:id" component={BookDetail} />
+            <Route path="books/:bookId" component={BookDetail} />
             <Route path="authors" component={AuthorsList} />
             <Route path="authors/:id" component={AuthorDetail} />
         </Route>
